@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "noble": "^0.3.7",
-    "sleep": "^1.2.0"
+    "noble": "^0.3.7"
   }
 }
