@@ -1,5 +1,5 @@
 {
-  "name": "rolling_spider",
+  "name": "rolling-spider",
   "version": "0.1.0",
   "description": "A library for sending BLE commands to a Parrot Rolling Spider drone",
   "main": "drone.js",
