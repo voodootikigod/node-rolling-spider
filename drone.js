@@ -148,112 +148,6 @@ Drone.prototype.leftFlip = function() {
 };
 
 //
-// 1 = wheels on
-// 0 = wheels off
-//
-Drone.prototype.wheelSetting = function(flag) {
-  this.steps["fa1e"] = (this.steps["fa1e"] || 0) + 1; 
-
-  this.writeTo(
-      "fa1e",
-      new Buffer([0x02,this.steps["fa1e"] & 0xFF,0x02,0x05,0x02,flag & 0xFF])
-      );
-};
-
-// max tilt in degrees
-Drone.prototype.maxTilt = function(degrees) {
-  this.steps["fa0b"] = (this.steps["fa0b"] || 0) + 1; 
-
-  var buffer = new Buffer(128);
-  buffer.fill(0);
-  buffer.writeInt16LE(2, 0);
-  buffer.writeInt16LE(this.steps["fa0b"], 1);
-  buffer.writeInt16LE(2, 3);
-  buffer.writeInt16LE(8, 4);
-  buffer.writeInt16LE(1, 5);
-  buffer.writeFloatLE(degrees);
-
-  this.writeTo(
-      "fa0b",
-      buffer
-      );
-};
-
-// max altitude in meters
-Drone.prototype.maxAltitude = function(height) {
-  this.steps["fa0b"] = (this.steps["fa0b"] || 0) + 1; 
-
-  var buffer = new Buffer(128);
-  buffer.fill(0);
-  buffer.writeInt16LE(2, 0);
-  buffer.writeInt16LE(this.steps["fa0b"], 1);
-  buffer.writeInt16LE(2, 3);
-  buffer.writeInt16LE(8, 4);
-  buffer.writeInt16LE(0, 5);
-  buffer.writeFloatLE(height);
-
-  this.writeTo(
-      "fa0b",
-      buffer
-      );
-};
-
-// max speed in m/s
-Drone.prototype.maxVerticalSpeed = function(speed) {
-  this.steps["fa0b"] = (this.steps["fa0b"] || 0) + 1; 
-
-  var buffer = new Buffer(128);
-  buffer.fill(0);
-  buffer.writeInt16LE(2, 0);
-  buffer.writeInt16LE(this.steps["fa0b"], 1);
-  buffer.writeInt16LE(2, 3);
-  buffer.writeInt16LE(1, 4);
-  buffer.writeInt16LE(0, 5);
-  buffer.writeFloatLE(speed);
-
-  this.writeTo(
-      "fa0b",
-      buffer
-      );
-};
-
-// max speed in degree/s
-Drone.prototype.maxRotationSpeed = function(speed) {
-  this.steps["fa0b"] = (this.steps["fa0b"] || 0) + 1; 
-
-  var buffer = new Buffer(128);
-  buffer.fill(0);
-  buffer.writeInt16LE(2, 0);
-  buffer.writeInt16LE(this.steps["fa0b"], 1);
-  buffer.writeInt16LE(2, 3);
-  buffer.writeInt16LE(1, 4);
-  buffer.writeInt16LE(1, 5);
-  buffer.writeFloatLE(speed);
-
-  this.writeTo(
-      "fa0b",
-      buffer
-      );
-};
-
-Drone.prototype.takePicture = function() {
-  this.steps["fa0b"] = (this.steps["fa0b"] || 0) + 1; 
-
-  var buffer = new Buffer(128);
-  buffer.fill(0);
-  buffer.writeInt16LE(2, 0);
-  buffer.writeInt16LE(this.steps["fa0b"], 1);
-  buffer.writeInt16LE(2, 3);
-  buffer.writeInt16LE(6, 4);
-  buffer.writeInt16LE(1, 5);
-
-  this.writeTo(
-      "fa0b",
-      buffer
-      );
-};
-
-//
 // tilt [-100:100]
 // forward [-100:100]
 // turn [-100:100]
@@ -344,22 +238,6 @@ Drone.prototype.tiltLeft = function(options) {
   var steps = options.steps || 50;
 
   this.drive(speed * -1, 0, 0, 0, steps);
-};
-
-Drone.prototype.swoopForwardAndDown = function() {
-  this.drive(0, 100, 0, -50, 100);
-};
-
-Drone.prototype.swoopForwardAndDownThenFlip = function() {
-  this.drive(0, 100, 0, -50, 100);
-  setTimeout(function() {
-    this.frontFlip();
-  }.bind(this), 1000);
-};
-
-Drone.prototype.returnFromSwoop = function() {
-  this.drive(0, 0, 0, 50, 100);
-  this.drive(0, 200, 0, 0, 100);
 };
 
 module.exports = Drone;
