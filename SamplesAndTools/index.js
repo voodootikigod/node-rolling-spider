@@ -1,6 +1,6 @@
 'use strict';
 
-var Drone = require('./drone');
+var Drone = require('../');
 var temporal = require('temporal');
 
 

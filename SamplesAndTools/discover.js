@@ -6,6 +6,7 @@ var knownDevices = [];
 noble.startScanning();
 
 noble.on("discover", function(peripheral) {
+  console.log(peripheral.advertisement.manufacturerData.toString('utf-8'));
   var details = {
     name: peripheral.advertisement.localName,
     uuid: peripheral.uuid
