@@ -26,7 +26,8 @@
     "url": "https://github.com/FluffyJack/node-rolling-spider/issues"
   },
   "dependencies": {
-    "noble": "^0.3.7"
+    "noble": "^0.3.7",
+    "temporal": "^0.4.0"
   },
   "devDependencies": {
     "mocha": "*",
