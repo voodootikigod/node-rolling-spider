@@ -2,7 +2,7 @@
   "name": "rolling-spider",
   "version": "0.1.0",
   "description": "A library for sending BLE commands to a Parrot Rolling Spider drone",
-  "main": "drone.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,5 +27,16 @@
   },
   "dependencies": {
     "noble": "^0.3.7"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "chai": "*",
+    "sinon-chai": "*",
+    "sinon": "*",
+    "grunt": "*",
+    "grunt-cli": "*",
+    "grunt-mocha-test": "*",
+    "grunt-contrib-jshint": "*",
+    "sandboxed-module": "~0.3.0"
   }
 }
