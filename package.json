@@ -26,10 +26,10 @@
     "url": "https://github.com/FluffyJack/node-rolling-spider/issues"
   },
   "dependencies": {
-    "noble": "^0.3.7",
-    "temporal": "^0.4.0"
+    "noble": "^0.3.7"
   },
   "devDependencies": {
+    "keypress": "^0.2.1",
     "mocha": "*",
     "chai": "*",
     "sinon-chai": "*",
@@ -38,6 +38,7 @@
     "grunt-cli": "*",
     "grunt-mocha-test": "*",
     "grunt-contrib-jshint": "*",
-    "sandboxed-module": "~0.3.0"
+    "sandboxed-module": "~0.3.0",
+    "temporal": "^0.4.0"
   }
 }
