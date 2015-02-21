@@ -1,35 +1,70 @@
-"use strict";
+'use strict';
 
-var Drone = require("./drone");
+var Drone = require('../');
+var temporal = require('temporal');
 
-if (process.env.UUID) {
-  var d = new Drone(process.env.UUID);
-  d.connect(function() {
-    d.setup(function() {
-      d.startPing();
-      d.takeOff();
 
-      setTimeout(function() {
-        d.forward({steps: 100});
-        setTimeout(function() {
+
+var d = new Drone(process.env.UUID);
+d.connect(function () {
+  d.setup(function () {
+    temporal.queue([
+      {
+        delay: 0,
+        task: function () {
+          d.startPing();
+          d.takeOff();
+        }
+      },
+      {
+        delay: 3000,
+        task: function () {
+          d.forward({steps: 100});
+        }
+      },
+      {
+        delay: 2000,
+        task: function () {
           d.turnRight({steps: 300});
-          setTimeout(function() {
-            d.forward({steps: 100});
-            setTimeout(function() {
-              d.tiltLeft({steps: 30, speed: 100});
-              setTimeout(function() {
-                d.tiltRight({steps: 30, speed: 100});
-                setTimeout(function() {
-                  d.frontFlip();
-                  setTimeout(function() {
-                    d.land();
-                  }, 2000);
-                }, 2000);
-              }, 2000);
-            }, 2000);
-          }, 2000);
-        }, 2000);
-      }, 3000);
-    });
+        }
+      },
+      {
+        delay: 2000,
+        task: function () {
+          d.forward({steps: 100});
+        }
+      },
+      {
+        delay: 2000,
+        task: function () {
+          d.tiltLeft({steps: 30, speed: 100});
+        }
+      },
+      {
+        delay: 2000,
+        task: function () {
+          d.tiltRight({steps: 30, speed: 100});
+        }
+      },
+      {
+        delay: 2000,
+        task: function () {
+          d.frontFlip();
+        }
+      },
+      {
+        delay: 2000,
+        task: function () {
+          d.land();
+        }
+      },
+      {
+        delay: 5000,
+        task: function () {
+          process.exit(0);
+        }
+      }
+    ]);
+
   });
-}
+});
