@@ -29,6 +29,10 @@ d.connect(function () {
           d.backward({steps: 100});
         } else if (key.name === 'a') {
           d.turnLeft({steps: 20});
+        } else if (key.name === 'left') {
+          d.tiltLeft({steps: 20});
+        } else if (key.name === 'right') {
+          d.tiltRight({steps: 20});
         } else if (key.name === 'd') {
           d.turnRight({steps: 20});
         } else if (key.name === 'up') {
