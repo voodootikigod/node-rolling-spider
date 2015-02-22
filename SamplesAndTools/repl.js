@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
-var Drone = require("./drone");
-var repl = require("repl");
+var Drone = require('./drone');
+var repl = require('repl');
 
 if (process.env.UUID) {
   var d = new Drone(process.env.UUID);
@@ -10,7 +10,7 @@ if (process.env.UUID) {
       d.startPing();
 
       var replServer = repl.start({
-        prompt: "Drone (" + d.uuid + ") > "
+        prompt: 'Drone (' + d.uuid + ') > '
       });
 
       replServer.context.drone = d;
