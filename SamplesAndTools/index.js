@@ -8,11 +8,12 @@ var temporal = require('temporal');
 var d = new Drone(process.env.UUID);
 d.connect(function () {
   d.setup(function () {
-    d.flatTrim();
+
     temporal.queue([
       {
         delay: 0,
         task: function () {
+          d.flatTrim();
           d.startPing();
           d.takeOff();
         }
