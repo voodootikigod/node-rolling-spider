@@ -1,23 +1,48 @@
-# Rolling Spider for NodeJS
+# Rolling Spider for Node.js
 
-A simple library that deals with all the horrible BLE calls. **INCOMPLETE AND HIGHLY EXPERIMENTAL**
+An implementation of the networking protocols (Bluetooth LE) used by the
+[Parrot MiniDrone - Rolling Spider](http://www.parrot.com/usa/products/rolling-spider/). This offers a off-the-shelf $99 USD drone that can be controlled by JS -- yay!
+
+Install via Github to get the *latest* version:
+
+```bash
+npm install git://github.com/voodootikigod/node-rolling-spider.git
+```
+
+Or, if you're fine with missing some cutting edge stuff, go for npm:
+
+```bash
+npm install rolling-spider
+```
+
+## Status
+
+This module is still under [heavy development](CONTRIBUTING.md), so please don't be surprised if
+you find some functionality missing or undocumented.
+
+However, the documented parts are tested and should work well for most parts.
 
 ## Warning
 
-This is meant to work with hardware. If you use this you agree that by using it you assume all repsponsibility. If you use it and your drone smashes into your ceiling fan, that's your fault. By using this code you assume all responsiblity for your usage of it. I'm not liable for anything you do with this code.
+This is meant to work with hardware. If you use this you agree that by using it you assume all responsibility. If you use it and your drone smashes into your ceiling fan, that's your fault. By using this code you assume all responsibility for your usage of it. I'm not liable for anything you do with this code.
 
 ## Getting Started
 
 There is a few steps you should take when getting started with this. We're going to learn how to get there by building out a simple script that will take off, move forward a little, then land.
 
+
+### Flying Multiple MiniDrones
+
+Previous versions of the `rolling-spider` library required you to specify the UUID for your drone through a discover process. This has been removed in favor of just using the first BLE device that broadcasts with "RS_" as its localname. ***If you are flying multiple minidrones or in a very populated BLE area***, you will want to use the discovery process in order to identify specifically the drone(s) you want to control. Use the [Discovery Tool](https://github.com/FluffyJack/node-rolling-spider/blob/master/SamplesAndTools/discover.js) to get the UUID of all nearby BLE devices.
+
 ### Connecting
 
-To connect you need to create a new `Drone` instance with a UUID you want to connect to (use the [Discovery Tool](https://github.com/FluffyJack/node-rolling-spider/blob/master/SamplesAndTools/discover.js) to get your UUID).
+To connect you need to create a new `Drone` instance.
 
 ```javascript
 var RollingSpider = require("rolling-spider");
 
-var yourDrone = new RollingSpider("<INSERT UUID HERE>");
+var yourDrone = new RollingSpider();
 ```
 
 After you've created an instance you now have access to all the functionality of the drone, but there is some stuff you need to do first, namely connecting, running the setup, and starting the ping to keep it connected.
@@ -25,7 +50,7 @@ After you've created an instance you now have access to all the functionality of
 ```javascript
 var RollingSpider = require("rolling-spider");
 
-var yourDrone = new RollingSpider("<INSERT UUID HERE>");
+var yourDrone = new RollingSpider();
 
 // NEW CODE BELOW HERE
 
@@ -37,64 +62,112 @@ yourDrone.connect(function() {
 ```
 ### Taking off, moving, and landing
 
-We're now going to create a function that takes a drone and then by using `setTimeout` creates a timed sequence of calls to actions on the drone.
+We're now going to create a function that takes a drone and then by using a sequence of `temporal` tasks creates a timed sequence of calls to actions on the drone.
 
-It's important that you use `setTimeout` between calls to make sure you give it enough time to complete the previous action, sometimes it freaks it out if you don't wait.
+We recommend using `temporal` over a series of `setTimeout` chained calls for your sanity. Please abide by this when playing with the drone and ESPECIALLY if filing a ticket.
 
 ```javascript
 var RollingSpider = require("rolling-spider");
+var temporal = require("temporal");
 
-var yourDrone = new RollingSpider("<INSERT UUID HERE>");
+var yourDrone = new RollingSpider();
 
 yourDrone.connect(function() {
   yourDrone.setup(function() {
-    yourDrone.startPing();
-
-    // function call to our movement sequence
-    runDroneSequence(yourDrone);
-
+    // NEW CODE
+    temporal.queue([
+      {
+        delay: 0,
+        task: function () {
+          yourDrone.flatTrim();
+          yourDrone.startPing();
+          yourDrone.takeOff();
+        }
+      },
+      {
+        delay: 3000,
+        task: function () {
+          yourDrone.forward();
+        }
+      },
+      {
+        delay: 500,
+        task: function () {
+          yourDrone.land();
+        }
+      }]);
   });
 });
 
-// NEW CODE
-
-function runDroneSequence(drone) {
-  drone.flatTrim(); // you should do this before take off when the wheels are on
-  drone.takeOff();
-
-  // you have to wait about 3 seconds for it to take off
-  setTimeout(function() {
-    drone.forward();
-
-    // wait till it has finished moving forward
-    setTimeout(function() {
-
-      // land
-      drone.land();
-    }, 500);
-  }, 3000);
-}
 ```
 
 ### Done!
 
 And there you have it, you can now control your drone.
 
-## Drone Commands
 
-* `flatTrim` - resets the trim so that your drone's flight is stable, should always be called before taking off
-* `takeOff` - take off then hover
-* `land` - floats down and lands
-* `emergancy` - shuts off the motors "instantly" (sometimes has to wait for other commands ahead of it to complete... not fully safe yet)
-* `up` - move up
-* `down` - move down
-* `forward` - tilt forward and so therefore move forward
-* `backward` - tilt backward and so therefore move backward
-* `tiltLeft` - tilt left and so therefore move left (not turn left)
-* `tiltRight` - tilt right and so therefore move right (not turn right)
-* `turnLeft` - rotate the drone left on the spot
-* `turnRight` - rotate the drone right on the spot
-* `frontFlip` - do a front flip
-* `backFlip` - do a back flip (seems to still do a front flip currently...?)
-* `rightFlip` - do a right flip **DO NOT USE WITH WHEELS ON!!!**
-* `leftFlip` - do a left flip **DO NOT USE WITH WHEELS ON!!!**
+
+### Client API
+
+#### arDrone.createClient([options])
+
+Returns a new `Client` object. `options` include:
+
+* `uuid`: The uuid of the drone. Defaults to finding first announced.
+
+
+#### client.takeoff(callback) __or__ client.takeOff(callback)
+
+Sets the internal `fly` state to `true`, `callback` is invoked after the drone
+reports that it is hovering.
+
+#### client.land(callback)
+
+Sets the internal `fly` state to `false`, `callback` is invoked after the drone
+reports it has landed.
+
+#### client.up(speed) / client.down(speed)
+
+Makes the drone gain or reduce altitude. `speed` can be a value from `0` to `1`.
+
+#### client.clockwise(speed) / client.counterClockwise(speed) __or__ client.turnRight(speed) / client.turnLeft(speed)
+
+Causes the drone to spin. `speed` can be a value from `0` to `1`.
+
+#### client.front(speed) / client.back(speed)
+
+Controls the pitch, which a horizontal movement using the camera
+as a reference point.  `speed` can be a value from `0` to `1`.
+
+#### client.left(speed) / client.right(speed) __or__ client.tiltLeft(speed) / client.tiltRight(speed)
+
+Controls the roll, which is a horizontal movement using the camera
+as a reference point.  `speed` can be a value from `0` to `1`.
+
+#### client.frontFlip()
+
+Causes the drone to do an amazing front flip.
+
+#### client.backFlip()
+
+Causes the drone to do an amazing back flip.
+
+#### client.leftFlip()
+
+Causes the drone to do an amazing left flip. **DO NOT USE WITH WHEELS ON!!!**
+
+#### client.rightFlip()
+
+Causes the drone to do an amazing right flip. **DO NOT USE WITH WHEELS ON!!!**
+
+
+#### client.calibrate() __or__ client.flatTrim()
+
+Resets the trim so that your drone's flight is stable. It should always be
+called before taking off.
+
+
+
+#### client.emergancy() __or__ client.emergency()
+
+Causes the drone to shut off the motors "instantly" (sometimes has to wait for other commands ahead of it to complete... not fully safe yet)
