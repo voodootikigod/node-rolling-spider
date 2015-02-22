@@ -1,6 +1,8 @@
 # 0.1.2
 
 * Parity with the client API of the [node-ar-drone](https://github.com/felixge/node-ar-drone#client-api) where appropriate. @voodootikigod
+* Included `debug` library to output information about the system when needed. Requires further instrumentation, but its a start. @voodootikigod
+* Removed unneeded dependency on temporal for just the module (not used yet, will eventually). @voodootikigod
 
 # 0.1.1
 
