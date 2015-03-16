@@ -20,20 +20,22 @@ d.connect(function () {
   d.setup(function () {
     d.flatTrim();
     d.startPing();
+    d.flatTrim();
     d.takeOff();
+    d.flatTrim();
     process.stdin.on('keypress', function (ch, key) {
       if (key) {
         if (key.name === 'w') {
           d.forward({steps: 100});
         } else if (key.name === 's') {
           d.backward({steps: 100});
-        } else if (key.name === 'a') {
-          d.turnLeft({steps: 20});
         } else if (key.name === 'left') {
+          d.turnLeft({steps: 20});
+        } else if (key.name === 'a') {
           d.tiltLeft({steps: 20});
-        } else if (key.name === 'right') {
-          d.tiltRight({steps: 20});
         } else if (key.name === 'd') {
+          d.tiltRight({steps: 20});
+        } else if (key.name === 'right') {
           d.turnRight({steps: 20});
         } else if (key.name === 'up') {
           d.up();
