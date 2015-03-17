@@ -1,45 +1,35 @@
 {
-  "name": "rolling-spider",
-  "version": "0.1.1",
+  "name": "parrot-rolling-spider",
   "description": "A library for sending BLE commands to a Parrot Rolling Spider drone",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:FluffyJack/node-rolling-spider.git"
-  },
+  "version": "0.1.0",
+  "main": "lib/drone.js",
   "keywords": [
+    "bluetooth",
     "ble",
     "parrot",
     "rolling-spider",
     "drone",
-    "bluetooth"
+    "quadcopter",
+    "multicopter",
+    "flight"
   ],
-  "author": "Jack Watson-Hamblin <info@fluffyjack.com> (https://motioninmotion.tv/)",
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/FluffyJack/node-rolling-spider/blob/master/LICENSE.md"
-  },
-  "bugs": {
-    "url": "https://github.com/FluffyJack/node-rolling-spider/issues"
+  "author": {
+    "name": "Chris Taylor",
+    "email": "christhebaron@gmail.com",
+    "web": "http://christhebaron.co.uk"
   },
   "dependencies": {
-    "debug": "^2.1.1",
     "noble": "^0.3.7"
   },
-  "devDependencies": {
-    "keypress": "^0.2.1",
-    "mocha": "*",
-    "chai": "*",
-    "sinon-chai": "*",
-    "sinon": "*",
-    "grunt": "*",
-    "grunt-cli": "*",
-    "grunt-mocha-test": "*",
-    "grunt-contrib-jshint": "*",
-    "sandboxed-module": "~0.3.0",
-    "temporal": "^0.4.0"
+  "bugs": {
+    "web": "https://github.com/ChrisTheBaron/node-rolling-spider/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ChrisTheBaron/node-rolling-spider.git"
+  },
+  "license": {
+    "name": "MIT",
+    "url": "http://opensource.org/licenses/MIT"
   }
 }
