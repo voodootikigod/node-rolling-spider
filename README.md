@@ -41,7 +41,9 @@ Instructs the drone to spin. `speed` can be a value from `0` to `100`.
 #### client.forward(speed) / client.backward(speed)
 Instructs the drone to pitch. `speed` can be a value from `0` to `100`.
 #### client.left(speed) / client.right(speed)
-Controls the roll, `speed` can be a value from `0` to `100`.
+Instructs the drone to roll, `speed` can be a value from `0` to `100`.
+#### client.hover()
+Instructs the drone to hover.
 #### client.frontFlip()
 Causes the drone to do an amazing front flip.
 #### client.backFlip()
@@ -59,3 +61,19 @@ Resets the trim so that your drone's flight is stable. It should always be
 called before taking off.
 #### client.emergencyLand()
 Instructs the drone to cut off power to the motors, landing immediately.   
+###Roadmap (TODO)
+ - Get flips tested
+  - Add unit-testing for current functionality
+ - Add media capture functionality
+  - Transfer captured media functionality
+ - Get battery information
+ - Get ultrasound information 
+  - Use ultrasound to verify things like taking off/ landing
+## Release History
+
+0.1.0 - Able to take off, land, and drift around. Flips not tested yet
+1.0.0 - Added a lot of comments. Changed signature of construct function to accept a logging function. Added hover() which stops all movement, not tested yet. Added a ping to maintain connection to the drone. Added restriction on OS in package.json
+
+## License
+
+Copyright (c) 2015 Chris Taylor. See `LICENSE` for more details
