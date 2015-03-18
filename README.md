@@ -76,6 +76,8 @@ Instructs the drone to cut off power to the motors, landing immediately.
 
 1.0.0 - Added a lot of comments. Changed signature of construct function to accept a logging function. Added hover() which stops all movement, not tested yet. Added a ping to maintain connection to the drone. Added restriction on OS in package.json
 
+1.0.1 - Fixed issue with disconnect not calling callback function
+
 ## License
 
 Copyright (c) 2015 Chris Taylor. See `LICENSE` for more details
