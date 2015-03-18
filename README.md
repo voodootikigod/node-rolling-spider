@@ -72,6 +72,7 @@ Instructs the drone to cut off power to the motors, landing immediately.
 ## Release History
 
 0.1.0 - Able to take off, land, and drift around. Flips not tested yet
+
 1.0.0 - Added a lot of comments. Changed signature of construct function to accept a logging function. Added hover() which stops all movement, not tested yet. Added a ping to maintain connection to the drone. Added restriction on OS in package.json
 
 ## License
