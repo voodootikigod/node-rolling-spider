@@ -80,6 +80,8 @@ Instructs the drone to cut off power to the motors, landing immediately.
 
 1.0.2 - Fixed issue with drone not responding
 
+1.0.3 - Still trying to fix issue with drone not responding
+
 ## License
 
 Copyright (c) 2015 Chris Taylor. See `LICENSE` for more details
