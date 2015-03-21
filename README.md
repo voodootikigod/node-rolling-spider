@@ -87,6 +87,7 @@ Instructs the drone to cut off power to the motors, landing immediately.
  - Get battery information
  - Get ultrasound information if possible
 	- Use ultrasound to verify things like taking off/ landing
+	
 ### Release History
 0.1.0 - Able to take off, land, and drift around. Flips not tested yet
 
