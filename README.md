@@ -1,5 +1,6 @@
 # Rolling Spider for Node.js
 This module is used to send data and commands to a [Parrot MiniDrone - Rolling Spider](http://www.parrot.com/usa/products/rolling-spider/).
+
 It is based off a [similar module](https://github.com/FluffyJack/node-rolling-spider) that is better suited for sending a queue of commands to the drone. This one is hopefully more suited for responding to incoming data such as a joystick being moved around.
 ## Install 
 Just run the following command to install the module.
@@ -19,11 +20,24 @@ var RollingSpider = require("parrot-rolling-spider");
 
 var yourDrone = new RollingSpider();
 
-yourDrone.connect(function() {
+yourDrone.connect(function () {
 
-		// Now your drone is ready to control    
+	yourDrone.trim();
+	yourDrone.takeOff();
 
-}); 
+	setTimeout(function () {
+
+		yourDrone.forward(50);
+
+		setTimeout(function () {
+
+			yourDrone.land();
+
+		}, 500);
+
+	}, 3000);
+
+});
 ```
 ### Done!
 And there you have it, you can now control your drone.
@@ -48,11 +62,15 @@ Instructs the drone to hover.
 Causes the drone to do an amazing front flip.
 #### client.backFlip()
 Causes the drone to do an amazing back flip.
-#### client.leftFlip()
+#### client.leftFlip() 
+**This has not been confirmed as working.**
+
 Causes the drone to do an amazing left flip. 
 
 **DO NOT USE WITH THE WHEELS ON.**
 #### client.rightFlip()
+**This has not been confirmed as working.**
+
 Causes the drone to do an amazing right flip. 
 
 **DO NOT USE WITH THE WHEELS ON.**
@@ -63,15 +81,13 @@ called before taking off.
 Instructs the drone to cut off power to the motors, landing immediately.   
 ###Roadmap (TODO)
  - Get flips tested
-  - Add unit-testing for current functionality
+ - Add unit-testing for current functionality
  - Add media capture functionality
-  - Transfer captured media functionality
+	- Add transfer captured media functionality
  - Get battery information
- - Get ultrasound information 
-  - Use ultrasound to verify things like taking off/ landing
-  
+ - Get ultrasound information if possible
+	- Use ultrasound to verify things like taking off/ landing
 ### Release History
-
 0.1.0 - Able to take off, land, and drift around. Flips not tested yet
 
 1.0.0 - Added a lot of comments. Changed signature of construct function to accept a logging function. Added hover() which stops all movement, not tested yet. Added a ping to maintain connection to the drone. Added restriction on OS in package.json
@@ -84,6 +100,6 @@ Instructs the drone to cut off power to the motors, landing immediately.
 
 1.0.4 - Actually fixed issue with drone not responding
 
+1.0.5 - Made backflip work
 ## License
-
 Copyright (c) 2015 Chris Taylor. See `LICENSE` for more details

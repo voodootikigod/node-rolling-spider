@@ -1,7 +1,7 @@
 {
   "name": "parrot-rolling-spider",
   "description": "A library for sending BLE commands to a Parrot Rolling Spider drone",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "lib/drone.js",
   "keywords": [
     "bluetooth",
