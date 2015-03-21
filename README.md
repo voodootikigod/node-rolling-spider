@@ -78,7 +78,8 @@ Causes the drone to do an amazing right flip.
 Resets the trim so that your drone's flight is stable. It should always be
 called before taking off.
 #### client.emergencyLand()
-Instructs the drone to cut off power to the motors, landing immediately.   
+Instructs the drone to cut off power to the motors, landing immediately.
+
 ###Roadmap (TODO)
  - Get flips tested
  - Add unit-testing for current functionality
