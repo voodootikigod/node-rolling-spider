@@ -89,18 +89,18 @@ Instructs the drone to cut off power to the motors, landing immediately.
 	- Use ultrasound to verify things like taking off/ landing
 	
 ### Release History
-0.1.0 - Able to take off, land, and drift around. Flips not tested yet
-
-1.0.0 - Added a lot of comments. Changed signature of construct function to accept a logging function. Added hover() which stops all movement, not tested yet. Added a ping to maintain connection to the drone. Added restriction on OS in package.json
-
-1.0.1 - Fixed issue with disconnect not calling callback function
-
-1.0.2 - Fixed issue with drone not responding
-
-1.0.3 - Still trying to fix issue with drone not responding
+1.0.5 - Made backflip work
 
 1.0.4 - Actually fixed issue with drone not responding
 
-1.0.5 - Made backflip work
+1.0.3 - Still trying to fix issue with drone not responding
+
+1.0.2 - Fixed issue with drone not responding
+
+1.0.1 - Fixed issue with disconnect not calling callback function
+
+1.0.0 - Added a lot of comments. Changed signature of construct function to accept a logging function. Added hover() which stops all movement, not tested yet. Added a ping to maintain connection to the drone. Added restriction on OS in package.json
+
+0.1.0 - Able to take off, land, and drift around. Flips not tested yet
 ## License
 Copyright (c) 2015 Chris Taylor. See `LICENSE` for more details
