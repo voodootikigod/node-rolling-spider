@@ -31,11 +31,13 @@ var d = new Drone(process.env.UUID);
 
 d.connect(function () {
   d.setup(function () {
+   console.log("Prepare for take off! ", d.name);    
     d.flatTrim();
     d.startPing();
     d.flatTrim();
-    d.takeOff();
-    d.flatTrim();
+    setTimeout(function () {
+      d.takeOff();
+    }, 1000);
     
   });
 });
@@ -78,6 +80,7 @@ process.stdin.on('keypress', function (ch, key) {
       }, 3000);
     } else if ( key.ctrl && key.name === 'c') {
       process.stdin.pause();
+      process.exit();
     }
   }
 });
