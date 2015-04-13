@@ -3,15 +3,15 @@
 var keypress = require('keypress');
 var Drone = require('../');
 
-var ACTIVE = true;
-var STEPS = 20;
+var ACTIVE = false;
+var STEPS = 40;
 
 
 function cooldown() {
   ACTIVE = false;
   setTimeout(function () {
     ACTIVE = true;
-  }, STEPS*8);
+  }, STEPS*12);
 }
 
 // make `process.stdin` begin emitting "keypress" events
@@ -29,24 +29,35 @@ if (process.env.UUID) {
 
 var d = new Drone(process.env.UUID);
 
-d.connect(function () {
-  d.setup(function () {
-   console.log("Prepare for take off! ", d.name);    
-    d.flatTrim();
-    d.startPing();
-    d.flatTrim();
-    setTimeout(function () {
-      d.takeOff();
-    }, 1000);
-    
+function launch () {
+  d.connect(function () {
+    d.setup(function () {
+     console.log("Prepare for take off! ", d.name);    
+      d.flatTrim();
+      d.startPing();
+      d.flatTrim();
+      setTimeout(function () {
+        d.takeOff();
+        ACTIVE=true;
+      }, 1000);
+      
+    });
   });
-});
 
+}
 
 process.stdin.on('keypress', function (ch, key) {
   if (ACTIVE && key) {
-    console.log(key);
-    if (key.name === 'w') {
+    console.log(key.name);
+    if (key.name === 'm') {
+      d.emergency();
+      setTimeout(function () {
+        process.exit();
+      }, 3000);
+    } else if (key.name == 't') {
+      d = new Drone(process.env.UUID);
+      launch();
+    } else if (key.name === 'w') {
       d.forward({steps: STEPS});
       cooldown();
     } else if (key.name === 's') {
@@ -84,3 +95,8 @@ process.stdin.on('keypress', function (ch, key) {
     }
   }
 });
+
+
+
+
+launch();
