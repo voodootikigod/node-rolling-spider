@@ -4,7 +4,7 @@ var keypress = require('keypress');
 var Drone = require('../');
 
 var ACTIVE = false;
-var STEPS = 40;
+var STEPS = 2;
 
 
 function cooldown() {
@@ -76,6 +76,7 @@ process.stdin.on('keypress', function (ch, key) {
       d.turnRight({steps: STEPS});
       cooldown();
     } else if (key.name === 'up') {
+      console.log(d)
       d.up({steps: STEPS*2.5});
       cooldown();
     } else if (key.name === 'down') {
