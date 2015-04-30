@@ -36,6 +36,10 @@ function launch() {
       d.flatTrim();
       d.startPing();
       d.flatTrim();
+      
+      d.on('battery', function () {
+        console.log('Battery: '+d.status.battery+'%');
+      });
       setTimeout(function () {
         d.takeOff();
         ACTIVE = true;
@@ -48,7 +52,7 @@ function launch() {
 
 process.stdin.on('keypress', function (ch, key) {
   if (ACTIVE && key) {
-    console.log(key.name);
+    console.log(key);
     if (key.name === 'm') {
       d.emergency();
       setTimeout(function () {
@@ -76,25 +80,25 @@ process.stdin.on('keypress', function (ch, key) {
       d.turnRight({ steps: STEPS });
       cooldown();
     } else if (key.name === 'up') {
-      console.log(d)
       d.up({ steps: STEPS * 2.5 });
       cooldown();
     } else if (key.name === 'down') {
       d.down({ steps: STEPS * 2.5 });
       cooldown();
-    } else if (key.name === '8' || key.name === 'f') {
+    } else if (key.name === 'i' || key.name === 'f') {
       d.frontFlip({ steps: STEPS });
       cooldown();
-    } else if (key.name === '4') {
+    } else if (key.name === 'j') {
       d.leftFlip({ steps: STEPS });
       cooldown();
-    } else if (key.name === '6') {
+    } else if (key.name === 'l') {
       d.rightFlip({ steps: STEPS });
       cooldown();
-    } else if (key.name === '2') {
+    } else if (key.name === 'k') {
       d.backFlip({ steps: STEPS });
       cooldown();
     } else if (key.name === 'q') {
+      console.log("Initiated Landing Sequence...");
       d.land();
       setTimeout(function () {
         process.exit();
