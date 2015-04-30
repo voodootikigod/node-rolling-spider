@@ -11,7 +11,7 @@ function cooldown() {
   ACTIVE = false;
   setTimeout(function () {
     ACTIVE = true;
-  }, STEPS*12);
+  }, STEPS * 12);
 }
 
 // make `process.stdin` begin emitting "keypress" events
@@ -29,16 +29,20 @@ if (process.env.UUID) {
 
 var d = new Drone(process.env.UUID);
 
-function launch () {
+function launch() {
   d.connect(function () {
     d.setup(function () {
-     console.log("Prepare for take off! ", d.name);
+            console.log("Prepare for take off! ", d.name);
       d.flatTrim();
       d.startPing();
       d.flatTrim();
+      
+      d.on('battery', function () {
+        console.log('Battery: '+d.status.battery+'%');
+      });
       setTimeout(function () {
         d.takeOff();
-        ACTIVE=true;
+        ACTIVE = true;
       }, 1000);
 
     });
@@ -48,7 +52,7 @@ function launch () {
 
 process.stdin.on('keypress', function (ch, key) {
   if (ACTIVE && key) {
-    console.log(key.name);
+    console.log(key);
     if (key.name === 'm') {
       d.emergency();
       setTimeout(function () {
@@ -58,39 +62,48 @@ process.stdin.on('keypress', function (ch, key) {
       d = new Drone(process.env.UUID);
       launch();
     } else if (key.name === 'w') {
-      d.forward({steps: STEPS});
+      d.forward({ steps: STEPS });
       cooldown();
     } else if (key.name === 's') {
-      d.backward({steps: STEPS});
+      d.backward({ steps: STEPS });
       cooldown();
     } else if (key.name === 'left') {
-      d.turnLeft({steps: STEPS});
+      d.turnLeft({ steps: STEPS });
       cooldown();
     } else if (key.name === 'a') {
-      d.tiltLeft({steps: STEPS});
+      d.tiltLeft({ steps: STEPS });
       cooldown();
     } else if (key.name === 'd') {
-      d.tiltRight({steps: STEPS});
+      d.tiltRight({ steps: STEPS });
       cooldown();
     } else if (key.name === 'right') {
-      d.turnRight({steps: STEPS});
+      d.turnRight({ steps: STEPS });
       cooldown();
     } else if (key.name === 'up') {
-      console.log(d)
-      d.up({steps: STEPS*2.5});
+      d.up({ steps: STEPS * 2.5 });
       cooldown();
     } else if (key.name === 'down') {
-      d.down({steps: STEPS*2.5});
+      d.down({ steps: STEPS * 2.5 });
       cooldown();
-    } else if (key.name === 'f') {
-      d.frontFlip({steps: STEPS});
+    } else if (key.name === 'i' || key.name === 'f') {
+      d.frontFlip({ steps: STEPS });
+      cooldown();
+    } else if (key.name === 'j') {
+      d.leftFlip({ steps: STEPS });
+      cooldown();
+    } else if (key.name === 'l') {
+      d.rightFlip({ steps: STEPS });
+      cooldown();
+    } else if (key.name === 'k') {
+      d.backFlip({ steps: STEPS });
       cooldown();
     } else if (key.name === 'q') {
+      console.log("Initiated Landing Sequence...");
       d.land();
       setTimeout(function () {
         process.exit();
       }, 3000);
-    } else if ( key.ctrl && key.name === 'c') {
+    } else if (key.ctrl && key.name === 'c') {
       process.stdin.pause();
       process.exit();
     }

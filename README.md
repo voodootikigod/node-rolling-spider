@@ -113,8 +113,11 @@ Previous versions of the `rolling-spider` library required you to specify the UU
 
 Returns a new `Client` object. `options` include:
 
-* `uuid`: The uuid of the drone. Defaults to finding first announced.
+* `uuid`: The uuid (Bluetooth UUID) or the Published Name (something like RS_XXXXXX) of the drone. Defaults to finding first announced.
 
+#### client.on('battery', callback) 
+
+Event that is emitted on battery change activity. Caution, battery drains pretty fast on this so this may create a high velocity of events.
 
 #### client.takeoff(callback) __or__ client.takeOff(callback)
 
