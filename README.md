@@ -167,6 +167,14 @@ Resets the trim so that your drone's flight is stable. It should always be
 called before taking off.
 
 
+#### client.signalStrength(function callback(err, rssi) {})
+
+Obtains the signal strength as an RSSI value returned as the second parameter of the callback.
+
+#### client.disconnect()
+
+Disconnects from the drone if it is connected.
+
 
 #### client.emergancy() __or__ client.emergency()
 
