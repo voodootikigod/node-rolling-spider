@@ -32,13 +32,17 @@ var d = new Drone(process.env.UUID);
 function launch() {
   d.connect(function () {
     d.setup(function () {
-            console.log("Prepare for take off! ", d.name);
+      console.log("Prepare for take off! ", d.name);
       d.flatTrim();
       d.startPing();
       d.flatTrim();
-      
+
       d.on('battery', function () {
-        console.log('Battery: '+d.status.battery+'%');
+        console.log('Battery: ' + d.status.battery + '%');
+        d.signalStrength(function (err, val) {
+          console.log('Signal: ' + d.status.battery + 'dBm');
+        });
+
       });
       setTimeout(function () {
         d.takeOff();
@@ -52,7 +56,6 @@ function launch() {
 
 process.stdin.on('keypress', function (ch, key) {
   if (ACTIVE && key) {
-    console.log(key);
     if (key.name === 'm') {
       d.emergency();
       setTimeout(function () {
