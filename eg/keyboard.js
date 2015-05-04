@@ -14,17 +14,17 @@ function cooldown() {
   }, STEPS * 12);
 }
 
-// make `process.stdin` begin emitting "keypress" events
+// make `process.stdin` begin emitting 'keypress' events
 keypress(process.stdin);
 
-// listen for the "keypress" event
+// listen for the 'keypress' event
 
 
 process.stdin.setRawMode(true);
 process.stdin.resume();
 
 if (process.env.UUID) {
-  console.log("Searching for ", process.env.UUID);
+  console.log('Searching for ', process.env.UUID);
 }
 
 var d = new Drone(process.env.UUID);
@@ -32,7 +32,7 @@ var d = new Drone(process.env.UUID);
 function launch() {
   d.connect(function () {
     d.setup(function () {
-      console.log("Prepare for take off! ", d.name);
+      console.log('Prepare for take off! ', d.name);
       d.flatTrim();
       d.startPing();
       d.flatTrim();
@@ -61,7 +61,7 @@ process.stdin.on('keypress', function (ch, key) {
       setTimeout(function () {
         process.exit();
       }, 3000);
-    } else if (key.name == 't') {
+    } else if (key.name === 't') {
       d = new Drone(process.env.UUID);
       launch();
     } else if (key.name === 'w') {
@@ -101,7 +101,7 @@ process.stdin.on('keypress', function (ch, key) {
       d.backFlip({ steps: STEPS });
       cooldown();
     } else if (key.name === 'q') {
-      console.log("Initiated Landing Sequence...");
+      console.log('Initiated Landing Sequence...');
       d.land();
       setTimeout(function () {
         process.exit();
