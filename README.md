@@ -17,14 +17,8 @@ npm install rolling-spider
 
 ## Status
 
-This module is still under [heavy development](CONTRIBUTING.md), so please don't be surprised if
-you find some functionality missing or undocumented.
+Stable. Minor configuration settings have yet to be done, but otherwise this module is stablized and can perform great flight control.
 
-However, the documented parts are tested and should work well for most parts.
-
-## Warning
-
-This is meant to work with hardware. If you use this you agree that by using it you assume all responsibility. If you use it and your drone smashes into your ceiling fan, that's your fault. By using this code you assume all responsibility for your usage of it. I'm not liable for anything you do with this code.
 
 ## Getting Started
 
@@ -109,7 +103,7 @@ Previous versions of the `rolling-spider` library required you to specify the UU
 
 ### Client API
 
-#### arDrone.createClient([options])
+#### RollingSpider.createClient([options])
 
 Returns a new `Client` object. `options` include:
 
