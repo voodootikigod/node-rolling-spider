@@ -3,7 +3,7 @@
 var keypress = require('keypress');
 var Drone = require('../');
 
-var ACTIVE = false;
+var ACTIVE = true;
 var STEPS = 2;
 
 
@@ -106,10 +106,11 @@ process.stdin.on('keypress', function (ch, key) {
       setTimeout(function () {
         process.exit();
       }, 3000);
-    } else if (key.ctrl && key.name === 'c') {
-      process.stdin.pause();
-      process.exit();
     }
+  }
+  if (key && key.ctrl && key.name === 'c') {
+    process.stdin.pause();
+    process.exit();
   }
 });
 
