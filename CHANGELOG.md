@@ -1,3 +1,18 @@
+# 1.0.0
+* Code Comments thanks to @christhebaron
+* Merger of @christhebaron fork. (@voodootikigod)
+* JSHint passes.
+
+# 0.3.1
+* Improvements to discover. (@sandeepmistry)
+* Added battery and signal strength to `eg/keyboard.js`.  (@voodootikigod)
+* Move to use `eg` directory instead of `SamplesAndTools`. (@voodootikigod)
+
+# 0.3.0
+* Merged in code changes from DroneWorks team (@droneworks)
+* Refactored code base to use an inline and responsive ping with yaw, pitch, altitude, and roll commands. (@voodootikigod)
+* Refactored drive to use ping (@droneworks/@voodootikigod)
+
 # 0.1.2
 
 * Parity with the client API of the [node-ar-drone](https://github.com/felixge/node-ar-drone#client-api) where appropriate. @voodootikigod
