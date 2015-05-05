@@ -14,11 +14,10 @@
     "flight"
   ],
   "author": {
-    "name":"Jack Watson-Hamblin",
+    "name": "Jack Watson-Hamblin",
     "email": "info@fluffyjack.com",
     "web": "https://motioninmotion.tv/"
   },
-
   "maintainers": [
     {
       "name": "Jack Watson-Hamblin",
@@ -40,6 +39,9 @@
   "dependencies": {
     "debug": "^2.1.1",
     "noble": "^0.3.14"
+  },
+  "devDependencies": {
+    "keypress": "^0.2.1"
   },
   "repository": {
     "type": "git",
