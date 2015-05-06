@@ -127,8 +127,8 @@ reports it has landed.
 
 Options
 
-> `speed` at which the drive should occur. 0-100 values.
-> `steps` the length of steps (time) the drive should happen. 0-100 values.
+> * `speed` at which the drive should occur. 0-100 values.
+> * `steps` the length of steps (time) the drive should happen. 0-100 values.
  
 Makes the drone gain or reduce altitude. 
 
@@ -136,22 +136,22 @@ Makes the drone gain or reduce altitude.
 
 Options
 
-> `speed` at which the rotation should occur
-> `steps` the length of steps (time) the turning should happen. 0-100 values.
+> * `speed` at which the rotation should occur
+> * `steps` the length of steps (time) the turning should happen. 0-100 values.
 
 Causes the drone to spin. 
 
 #### client.forward([options]) / client.backward([optoins])
 
-> `speed` at which the drive should occur. 0-100 values.
-> `steps` the length of steps (time) the drive should happen. 0-100 values.
+> * `speed` at which the drive should occur. 0-100 values.
+> * `steps` the length of steps (time) the drive should happen. 0-100 values.
 
 Controls the pitch.
 
 #### client.left([options]) / client.right([options]) __or__ client.tiltLeft([options]) / client.tiltRight([options])
 
-> `speed` at which the drive should occur. 0-100 values.
-> `steps` the length of steps (time) the drive should happen. 0-100 values.
+> * `speed` at which the drive should occur. 0-100 values.
+> * `steps` the length of steps (time) the drive should happen. 0-100 values.
 
 Controls the roll, which is a horizontal movement.
 
