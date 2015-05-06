@@ -1,3 +1,6 @@
+# 1.0.1
+* Waits for adapter ready notification before attempting to scan for the drone. (@voodootikigod)
+
 # 1.0.0
 * Code Comments thanks to @christhebaron
 * Merger of @christhebaron fork. (@voodootikigod)
