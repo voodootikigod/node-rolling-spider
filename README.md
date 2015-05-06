@@ -123,23 +123,33 @@ reports that it is hovering.
 Sets the internal `fly` state to `false`, `callback` is invoked after the drone
 reports it has landed.
 
-#### client.up(speed) / client.down(speed)
+#### client.up([options]) / client.down([options])
 
-Makes the drone gain or reduce altitude. `speed` can be a value from `0` to `1`.
+> * @param {float} `speed` at which the drive should occur. 0-100 values.
+> * @param {float} `steps` the length of steps (time) the drive should happen
+ 
+Makes the drone gain or reduce altitude. 
 
-#### client.clockwise(speed) / client.counterClockwise(speed) __or__ client.turnRight(speed) / client.turnLeft(speed)
+#### client.clockwise([options]) / client.counterClockwise([options]) __or__ client.turnRight([options]) / client.turnLeft([options])
 
-Causes the drone to spin. `speed` can be a value from `0` to `1`.
+> * @param {float} `speed` at which the rotation should occur
+> * @param {float} `steps` the length of steps (time) the turning should happen
 
-#### client.front(speed) / client.back(speed)
+Causes the drone to spin. 
 
-Controls the pitch, which a horizontal movement using the camera
-as a reference point.  `speed` can be a value from `0` to `1`.
+#### client.forward([options]) / client.backward([optoins])
 
-#### client.left(speed) / client.right(speed) __or__ client.tiltLeft(speed) / client.tiltRight(speed)
+> * @param {float} `speed` at which the drive should occur. 0-100 values.
+> * @param {float} `steps` the length of steps (time) the drive should happen
 
-Controls the roll, which is a horizontal movement using the camera
-as a reference point.  `speed` can be a value from `0` to `1`.
+Controls the pitch.
+
+#### client.left([options]) / client.right([options]) __or__ client.tiltLeft([options]) / client.tiltRight([options])
+
+> * @param {float} `speed` at which the drive should occur. 0-100 values.
+> * @param {float} `steps` the length of steps (time) the drive should happen
+
+Controls the roll, which is a horizontal movement.
 
 #### client.frontFlip()
 
