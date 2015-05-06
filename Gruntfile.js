@@ -10,7 +10,7 @@ module.exports = function(grunt) {
       }
     },
     jshint: {
-      all: ['*.js', 'test/**/*.js', 'arduinoTest/**/*.js'],
+      all: ['*.js', 'lib/*.js'],
       options:{
         jshintrc: true
       }
