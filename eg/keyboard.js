@@ -40,7 +40,7 @@ function launch() {
       d.on('battery', function () {
         console.log('Battery: ' + d.status.battery + '%');
         d.signalStrength(function (err, val) {
-          console.log('Signal: ' + d.status.battery + 'dBm');
+          console.log('Signal: ' + val + 'dBm');
         });
 
       });
