@@ -1,4 +1,7 @@
 # 1.0.1
+* Proper display of battery and signal on the keyboard example. (@lynnaloo)
+
+# 1.0.1
 * Waits for adapter ready notification before attempting to scan for the drone. (@voodootikigod)
 
 # 1.0.0
