@@ -1,3 +1,9 @@
+# 1.0.3
+* Allow waiting for settle (default) and forceConnect for assumed bluetooth settling (@voodootikigod)
+
+# 1.0.2
+* Proper display of battery and signal on the keyboard example. (@lynnaloo)
+
 # 1.0.1
 * Waits for adapter ready notification before attempting to scan for the drone. (@voodootikigod)
 
