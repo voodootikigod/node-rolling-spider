@@ -123,23 +123,37 @@ reports that it is hovering.
 Sets the internal `fly` state to `false`, `callback` is invoked after the drone
 reports it has landed.
 
-#### client.up(speed) / client.down(speed)
+#### client.up([options]) / client.down([options])
 
-Makes the drone gain or reduce altitude. `speed` can be a value from `0` to `1`.
+Options
 
-#### client.clockwise(speed) / client.counterClockwise(speed) __or__ client.turnRight(speed) / client.turnLeft(speed)
+> * `speed` at which the drive should occur. 0-100 values.
+> * `steps` the length of steps (time) the drive should happen. 0-100 values.
+ 
+Makes the drone gain or reduce altitude. 
 
-Causes the drone to spin. `speed` can be a value from `0` to `1`.
+#### client.clockwise([options]) / client.counterClockwise([options]) __or__ client.turnRight([options]) / client.turnLeft([options])
 
-#### client.front(speed) / client.back(speed)
+Options
 
-Controls the pitch, which a horizontal movement using the camera
-as a reference point.  `speed` can be a value from `0` to `1`.
+> * `speed` at which the rotation should occur
+> * `steps` the length of steps (time) the turning should happen. 0-100 values.
 
-#### client.left(speed) / client.right(speed) __or__ client.tiltLeft(speed) / client.tiltRight(speed)
+Causes the drone to spin. 
 
-Controls the roll, which is a horizontal movement using the camera
-as a reference point.  `speed` can be a value from `0` to `1`.
+#### client.forward([options]) / client.backward([optoins])
+
+> * `speed` at which the drive should occur. 0-100 values.
+> * `steps` the length of steps (time) the drive should happen. 0-100 values.
+
+Controls the pitch.
+
+#### client.left([options]) / client.right([options]) __or__ client.tiltLeft([options]) / client.tiltRight([options])
+
+> * `speed` at which the drive should occur. 0-100 values.
+> * `steps` the length of steps (time) the drive should happen. 0-100 values.
+
+Controls the roll, which is a horizontal movement.
 
 #### client.frontFlip()
 
