@@ -1,3 +1,11 @@
+# 1.0.4 - 1.0.8
+* Minor fixes while using in production.
+* Increased logging for bug trace down (@voodootikigod)
+* All callbacks protected (@voodootikigod)
+* Flush on emergency (@voodootikigod)
+* Multiple UUID selection capability (@voodootikigod)
+* Reconnect now works. (@voodootikigod)
+
 # 1.0.3
 * Allow waiting for settle (default) and forceConnect for assumed bluetooth settling (@voodootikigod)
 
