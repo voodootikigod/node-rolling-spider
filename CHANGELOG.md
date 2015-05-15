@@ -1,4 +1,7 @@
 # 1.0.10
+* `stateChange` notification in the RollingSpider.
+
+# 1.0.10
 * Remove disconnect from emergency to allow re-takeoff after emergency
 
 # 1.0.4 - 1.0.8
