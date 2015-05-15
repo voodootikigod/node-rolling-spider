@@ -1,3 +1,6 @@
+# 1.0.10
+* Remove disconnect from emergency to allow re-takeoff after emergency
+
 # 1.0.4 - 1.0.8
 * Minor fixes while using in production.
 * Increased logging for bug trace down (@voodootikigod)
