@@ -29,30 +29,31 @@ if (process.env.UUID) {
 
 var d = new Drone(process.env.UUID);
 
-function launch() {
-  d.connect(function () {
-    d.setup(function () {
-      console.log('Prepare for take off! ', d.name);
-      d.flatTrim();
-      d.startPing();
-      d.flatTrim();
+d.connect(function () {
+  d.setup(function () {
+    console.log('Configured for Rolling Spider! ', d.name);
+    d.flatTrim();
+    d.startPing();
+    d.flatTrim();
 
-      d.on('battery', function () {
-        console.log('Battery: ' + d.status.battery + '%');
-        d.signalStrength(function (err, val) {
-          console.log('Signal: ' + val + 'dBm');
-        });
-
+    d.on('battery', function () {
+      console.log('Battery: ' + d.status.battery + '%');
+      d.signalStrength(function (err, val) {
+        console.log('Signal: ' + val + 'dBm');
       });
-      setTimeout(function () {
-        d.takeOff();
-        ACTIVE = true;
-      }, 1000);
 
     });
-  });
+    
+    d.on('stateChange', function () {
+      console.log(d.status.flying ? "-- flying" : "-- down");
+    })
+    setTimeout(function () {
+      console.log('ready for flight');
+      ACTIVE = true;
+    }, 1000);
 
-}
+  });
+});
 
 process.stdin.on('keypress', function (ch, key) {
   if (ACTIVE && key) {
@@ -62,8 +63,9 @@ process.stdin.on('keypress', function (ch, key) {
         process.exit();
       }, 3000);
     } else if (key.name === 't') {
-      d = new Drone(process.env.UUID);
-      launch();
+      console.log('takeoff');
+      d.takeOff();
+      
     } else if (key.name === 'w') {
       d.forward({ steps: STEPS });
       cooldown();
@@ -103,9 +105,9 @@ process.stdin.on('keypress', function (ch, key) {
     } else if (key.name === 'q') {
       console.log('Initiated Landing Sequence...');
       d.land();
-      setTimeout(function () {
-        process.exit();
-      }, 3000);
+//      setTimeout(function () {
+//        process.exit();
+//      }, 3000);
     }
   }
   if (key && key.ctrl && key.name === 'c') {
@@ -117,4 +119,4 @@ process.stdin.on('keypress', function (ch, key) {
 
 
 
-launch();
+//launch();
