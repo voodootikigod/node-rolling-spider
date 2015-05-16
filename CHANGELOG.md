@@ -1,3 +1,11 @@
+# 1.0.11
+* `stateChange` is now reliable.
+* Better instrumentation of disconnect handling.
+* Better use of state management.
+
+# 1.0.10
+* `stateChange` notification in the RollingSpider.
+
 # 1.0.10
 * Remove disconnect from emergency to allow re-takeoff after emergency
 
