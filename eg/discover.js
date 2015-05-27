@@ -7,8 +7,11 @@ noble.startScanning();
 
 noble.on('discover', function(peripheral) {
   var localName = peripheral.advertisement.localName;
+  var manufacturerData = peripheral.advertisement.manufacturerData;
 
-  if (!localName || localName.indexOf('RS_') !== 0) {
+  var droneName = localName && localName.indexOf('RS_') === 0;
+  var manufacturer = manufacturerData && manufacturerData.toString('hex') === '4300cf1900090100';
+  if (!droneName && !manufacturer) {
     return; // not a rolling spider
   }
 
