@@ -36,17 +36,17 @@ d.connect(function () {
     d.startPing();
     d.flatTrim();
 
-    d.on('battery', function () {
-      console.log('Battery: ' + d.status.battery + '%');
-      d.signalStrength(function (err, val) {
-        console.log('Signal: ' + val + 'dBm');
-      });
+    // d.on('battery', function () {
+    //   console.log('Battery: ' + d.status.battery + '%');
+    //   d.signalStrength(function (err, val) {
+    //     console.log('Signal: ' + val + 'dBm');
+    //   });
 
-    });
-    
-    d.on('stateChange', function () {
-      console.log(d.status.flying ? "-- flying" : "-- down");
-    })
+    // });
+
+    // d.on('stateChange', function () {
+    //   console.log(d.status.flying ? "-- flying" : "-- down");
+    // })
     setTimeout(function () {
       console.log('ready for flight');
       ACTIVE = true;
@@ -65,7 +65,7 @@ process.stdin.on('keypress', function (ch, key) {
     } else if (key.name === 't') {
       console.log('takeoff');
       d.takeOff();
-      
+
     } else if (key.name === 'w') {
       d.forward({ steps: STEPS });
       cooldown();
