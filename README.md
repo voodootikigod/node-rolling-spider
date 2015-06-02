@@ -109,7 +109,7 @@ Returns a new `Client` object. `options` include:
 
 * `uuid`: The uuid (Bluetooth UUID) or the Published Name (something like RS_XXXXXX) of the drone. Defaults to finding first announced.
 
-#### client.on('battery', callback) 
+#### client.on('battery', callback)
 
 Event that is emitted on battery change activity. Caution, battery drains pretty fast on this so this may create a high velocity of events.
 
@@ -123,37 +123,37 @@ reports that it is hovering.
 Sets the internal `fly` state to `false`, `callback` is invoked after the drone
 reports it has landed.
 
-#### client.up([options]) / client.down([options])
+#### client.up([options], [callback]) / client.down([options], [callback])
 
 Options
 
-> * `speed` at which the drive should occur. 0-100 values.
-> * `steps` the length of steps (time) the drive should happen. 0-100 values.
- 
-Makes the drone gain or reduce altitude. 
+> * `speed` at which the drive should occur, a number from 0 to 100 inclusive.
+> * `steps` the length of steps (time) the drive should happen, a number from 0 to 100 inclusive.
 
-#### client.clockwise([options]) / client.counterClockwise([options]) __or__ client.turnRight([options]) / client.turnLeft([options])
+Makes the drone gain or reduce altitude. `callback` is invoked after all the steps are completed.
+
+#### client.clockwise([options], [callback]) / client.counterClockwise([options], [callback]) __or__ client.turnRight([options], [callback]) / client.turnLeft([options], [callback])
 
 Options
 
 > * `speed` at which the rotation should occur
-> * `steps` the length of steps (time) the turning should happen. 0-100 values.
+> * `steps` the length of steps (time) the turning should happen, a number from 0 to 100 inclusive.
 
-Causes the drone to spin. 
+Causes the drone to spin. `callback` is invoked after all the steps are completed.
 
-#### client.forward([options]) / client.backward([optoins])
+#### client.forward([options], [callback]) / client.backward([options], [callback])
 
-> * `speed` at which the drive should occur. 0-100 values.
-> * `steps` the length of steps (time) the drive should happen. 0-100 values.
+> * `speed` at which the drive should occur, a number from 0 to 100 inclusive.
+> * `steps` the length of steps (time) the drive should happen, a number from 0 to 100 inclusive.
 
-Controls the pitch.
+Controls the pitch. `callback` is invoked after all the steps are completed.
 
-#### client.left([options]) / client.right([options]) __or__ client.tiltLeft([options]) / client.tiltRight([options])
+#### client.left([options], [callback]) / client.right([options], [callback]) __or__ client.tiltLeft([options], [callback]) / client.tiltRight([options], [callback])
 
-> * `speed` at which the drive should occur. 0-100 values.
-> * `steps` the length of steps (time) the drive should happen. 0-100 values.
+> * `speed` at which the drive should occur, a number from 0 to 100 inclusive.
+> * `steps` the length of steps (time) the drive should happen, a number from 0 to 100 inclusive.
 
-Controls the roll, which is a horizontal movement.
+Controls the roll, which is a horizontal movement. `callback` is invoked after all the steps are completed.
 
 #### client.frontFlip()
 
