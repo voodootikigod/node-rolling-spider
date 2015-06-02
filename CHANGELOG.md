@@ -1,3 +1,8 @@
+# 1.2.0
+* Callback style for all functional components (@garetht)
+* Readme fix
+* Verified functional for io 2.x+ and node 0.10.x, 0.12.x
+
 # 1.0.11
 * `stateChange` is now reliable.
 * Better instrumentation of disconnect handling.
