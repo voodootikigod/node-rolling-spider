@@ -22,7 +22,7 @@ Stable. Minor configuration settings have yet to be done, but otherwise this mod
 
 ## Getting Started
 
-There is a few steps you should take when getting started with this. We're going to learn how to get there by building out a simple script that will take off, move forward a little, then land.
+There are a few steps you should take when getting started with this. We're going to learn how to get there by building out a simple script that will take off, move forward a little, then land.
 
 
 ### Connecting
