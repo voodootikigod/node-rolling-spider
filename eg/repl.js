@@ -1,6 +1,6 @@
 'use strict';
 
-var Drone = require('./drone');
+var Drone = require('../');
 var repl = require('repl');
 
 if (process.env.UUID) {

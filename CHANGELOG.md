@@ -1,3 +1,27 @@
+# 1.2.0
+* Callback style for all functional components (@garetht)
+* Readme fix
+* Verified functional for io 2.x+ and node 0.10.x, 0.12.x
+
+# 1.0.11
+* `stateChange` is now reliable.
+* Better instrumentation of disconnect handling.
+* Better use of state management.
+
+# 1.0.10
+* `stateChange` notification in the RollingSpider.
+
+# 1.0.10
+* Remove disconnect from emergency to allow re-takeoff after emergency
+
+# 1.0.4 - 1.0.8
+* Minor fixes while using in production.
+* Increased logging for bug trace down (@voodootikigod)
+* All callbacks protected (@voodootikigod)
+* Flush on emergency (@voodootikigod)
+* Multiple UUID selection capability (@voodootikigod)
+* Reconnect now works. (@voodootikigod)
+
 # 1.0.3
 * Allow waiting for settle (default) and forceConnect for assumed bluetooth settling (@voodootikigod)
 

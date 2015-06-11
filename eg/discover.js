@@ -1,19 +1,18 @@
 'use strict';
 
+var Drone = require('../');
 var noble = require('noble');
 var knownDevices = [];
 
 noble.startScanning();
 
 noble.on('discover', function(peripheral) {
-  var localName = peripheral.advertisement.localName;
-
-  if (!localName || localName.indexOf('RS_') !== 0) {
+  if (!Drone.isDronePeripheral(peripheral)) {
     return; // not a rolling spider
   }
 
   var details = {
-    name: localName,
+    name: peripheral.advertisement.localName,
     uuid: peripheral.uuid,
     rssi: peripheral.rssi
   };
