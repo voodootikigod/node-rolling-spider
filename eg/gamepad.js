@@ -1,5 +1,19 @@
 'use strict';
 
+
+/*
+  For use with the Logitech Dual Action Controller F310
+  Button Mapping
+
+  X => 1
+  A => 2
+  B => 3
+  Y => 4
+
+*/
+
+
+
 // Create a new one
 var Controller = require('logitech-dual-action-controller');
 
@@ -60,6 +74,37 @@ var state = {
   turn: 0,
   up: 0
 }
+
+for (var i = 0; i< 9; i++) {
+
+  controller.on(i+':release', (function (id) {
+    return function () {
+      console.log(id);
+    };
+  })(i));
+}
+
+
+controller.on('1:release', function () {
+  console.log('Left Flip');
+  d.leftFlip();
+});
+
+controller.on('2:release', function () {
+  console.log('Back Flip');
+  d.backFlip();
+});
+
+controller.on('3:release', function () {
+  console.log('Right Flip');
+  d.rightFlip();
+});
+
+
+controller.on('4:release', function () {
+  console.log('Right Flip');
+  d.frontFlip();
+});
 
 
 controller.on('9:release', function () {
