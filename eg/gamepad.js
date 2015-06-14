@@ -106,6 +106,7 @@ controller.on('10:release', function () {
 });
 
 controller.on('left:move', function (data) {
+  console.log('left')
   state.up = variance(data.y);
   state.turn = variance(data.x);
   d.drive(state, -1);
