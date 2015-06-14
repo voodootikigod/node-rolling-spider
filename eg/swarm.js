@@ -28,7 +28,7 @@ process.stdin.resume();
 
 var swarm = new Swarm({
   membership: [
-    'RS_B170214',
+    'RS_B127274',
     'RS_R094107',
     'RS_W178602'
     ]
