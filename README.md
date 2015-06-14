@@ -22,7 +22,7 @@ Stable. Minor configuration settings have yet to be done, but otherwise this mod
 
 ## Getting Started
 
-There is a few steps you should take when getting started with this. We're going to learn how to get there by building out a simple script that will take off, move forward a little, then land.
+There are a few steps you should take when getting started with this. We're going to learn how to get there by building out a simple script that will take off, move forward a little, then land.
 
 
 ### Connecting
@@ -40,13 +40,13 @@ After you've created an instance you now have access to all the functionality of
 ```javascript
 var RollingSpider = require("rolling-spider");
 
-var yourDrone = new RollingSpider();
+var rollingSpider = new RollingSpider();
 
 // NEW CODE BELOW HERE
 
-yourDrone.connect(function() {
-  yourDrone.setup(function() {
-    yourDrone.startPing();
+rollingSpider.connect(function() {
+  rollingSpider.setup(function() {
+    rollingSpider.startPing();
   });
 });
 ```
@@ -155,24 +155,24 @@ Controls the pitch. `callback` is invoked after all the steps are completed.
 
 Controls the roll, which is a horizontal movement. `callback` is invoked after all the steps are completed.
 
-#### client.frontFlip()
+#### client.frontFlip([callback])
 
 Causes the drone to do an amazing front flip.
 
-#### client.backFlip()
+#### client.backFlip([callback])
 
 Causes the drone to do an amazing back flip.
 
-#### client.leftFlip()
+#### client.leftFlip([callback])
 
 Causes the drone to do an amazing left flip. **DO NOT USE WITH WHEELS ON!!!**
 
-#### client.rightFlip()
+#### client.rightFlip([callback])
 
 Causes the drone to do an amazing right flip. **DO NOT USE WITH WHEELS ON!!!**
 
 
-#### client.calibrate() __or__ client.flatTrim()
+#### client.calibrate([callback]) __or__ client.flatTrim([callback])
 
 Resets the trim so that your drone's flight is stable. It should always be
 called before taking off.
@@ -182,11 +182,11 @@ called before taking off.
 
 Obtains the signal strength as an RSSI value returned as the second parameter of the callback.
 
-#### client.disconnect()
+#### client.disconnect([callback])
 
 Disconnects from the drone if it is connected.
 
 
-#### client.emergancy() __or__ client.emergency()
+#### client.emergancy([callback]) __or__ client.emergency([callback])
 
 Causes the drone to shut off the motors "instantly" (sometimes has to wait for other commands ahead of it to complete... not fully safe yet)

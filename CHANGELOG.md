@@ -1,3 +1,7 @@
+# 1.3.0
+* Even more callback flushing for all events and protective execution. (Fix for #43)
+* Gamepad support for logitech dual action controller as an example.
+
 # 1.2.0
 * Callback style for all functional components (@garetht)
 * Readme fix
