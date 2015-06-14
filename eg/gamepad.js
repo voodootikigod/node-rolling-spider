@@ -73,60 +73,46 @@ var state = {
   forward: 0,
   turn: 0,
   up: 0
+};
+
+function variance(val) {
+  return ((val >= -5 && val <= 5) ? 0 : val);
 }
-
-for (var i = 0; i< 9; i++) {
-
-  controller.on(i+':release', (function (id) {
-    return function () {
-      console.log(id);
-    };
-  })(i));
-}
-
 
 controller.on('1:release', function () {
-  console.log('Left Flip');
   d.leftFlip();
 });
 
 controller.on('2:release', function () {
-  console.log('Back Flip');
   d.backFlip();
 });
 
 controller.on('3:release', function () {
-  console.log('Right Flip');
   d.rightFlip();
 });
 
 
 controller.on('4:release', function () {
-  console.log('Right Flip');
   d.frontFlip();
 });
 
 
 controller.on('9:release', function () {
-  console.log('Flat Trim');
   d.flatTrim();
 });
 
 controller.on('10:release', function () {
-  console.log('Toggle');
   d.toggle();   // take off or land
 });
 
 controller.on('left:move', function (data) {
-  state.up = data.y;
-  state.turn = data.x;
-  console.log(state);
+  state.up = variance(data.y);
+  state.turn = variance(data.x);
   d.drive(state, -1);
 });
 
 controller.on('right:move', function (data) {
-  state.forward = data.y;
-  state.tilt = data.x;
-  console.log(state);
+  state.forward = variance(data.y);
+  state.tilt = variance(data.x);
   d.drive(state, -1);
 });
