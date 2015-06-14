@@ -40,13 +40,13 @@ After you've created an instance you now have access to all the functionality of
 ```javascript
 var RollingSpider = require("rolling-spider");
 
-var yourDrone = new RollingSpider();
+var rollingSpider = new RollingSpider();
 
 // NEW CODE BELOW HERE
 
-yourDrone.connect(function() {
-  yourDrone.setup(function() {
-    yourDrone.startPing();
+rollingSpider.connect(function() {
+  rollingSpider.setup(function() {
+    rollingSpider.startPing();
   });
 });
 ```
