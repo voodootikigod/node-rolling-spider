@@ -29,17 +29,15 @@ process.stdin.resume();
 var swarm = new Swarm({
   membership: [
     'RS_B127274',
-    'RS_R094107',
+    // 'RS_R094107',
     'RS_W178602'
     ]
 });
 
 swarm.assemble(function (memberCount) {
   console.log('assembled');
-  swarm.takeoff(function () {
-    console.log('takeoff');
-    ACTIVE= true;
-  });
+
+  ACTIVE= true;
 
 });
 
@@ -56,31 +54,38 @@ process.stdin.on('keypress', function (ch, key) {
         process.exit();
       }, 3000);
     } else if (key.name === 't') {
-      console.log('takeoff');
+      console.log('swarm#takeoff');
       swarm.takeOff();
-
     } else if (key.name === 'w') {
+      console.log('swarm#forward');
       swarm.forward({ steps: STEPS });
       cooldown();
     } else if (key.name === 's') {
+      console.log('swarm#backward');
       swarm.backward({ steps: STEPS });
       cooldown();
     } else if (key.name === 'left') {
+      console.log('swarm#turnleft');
       swarm.turnLeft({ steps: STEPS });
       cooldown();
     } else if (key.name === 'a') {
+      console.log('swarm#tiltleft');
       swarm.tiltLeft({ steps: STEPS });
       cooldown();
     } else if (key.name === 'd') {
+      console.log('swarm#tiltright');
       swarm.tiltRight({ steps: STEPS });
       cooldown();
     } else if (key.name === 'right') {
+      console.log('swarm#turnright');
       swarm.turnRight({ steps: STEPS });
       cooldown();
     } else if (key.name === 'up') {
+      console.log('swarm#up');
       swarm.up({ steps: STEPS * 2.5 });
       cooldown();
     } else if (key.name === 'down') {
+      console.log('swarm#down');
       swarm.down({ steps: STEPS * 2.5 });
       cooldown();
     } else if (key.name === 'i' || key.name === 'f') {
