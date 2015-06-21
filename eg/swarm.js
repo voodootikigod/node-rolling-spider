@@ -26,9 +26,9 @@ process.stdin.resume();
 
 
 
-var swarm = new Swarm();
+var swarm = new Swarm({timeout: 10});
 
-swarm.assemble({timeout: 10});
+swarm.assemble();
 
 swarm.on('assembled', function () {
   ACTIVE = true;

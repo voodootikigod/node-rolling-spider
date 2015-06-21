@@ -3,13 +3,7 @@
 An implementation of the networking protocols (Bluetooth LE) used by the
 [Parrot MiniDrone - Rolling Spider](http://www.parrot.com/usa/products/rolling-spider/). This offers an off-the-shelf $99 USD drone that can be controlled by JS -- yay!
 
-Install via Github to get the *latest* version:
-
-```bash
-npm install git://github.com/voodootikigod/node-rolling-spider.git
-```
-
-Or, if you're fine with missing some cutting edge stuff, go for npm:
+To install:
 
 ```bash
 npm install rolling-spider
@@ -17,7 +11,7 @@ npm install rolling-spider
 
 ## Status
 
-Stable. Minor configuration settings have yet to be done, but otherwise this module is stablized and can perform great flight control.
+Stable!
 
 
 ## Getting Started
@@ -32,7 +26,7 @@ To connect you need to create a new `Drone` instance.
 ```javascript
 var RollingSpider = require("rolling-spider");
 
-var yourDrone = new RollingSpider();
+var rollingSpider = new RollingSpider();
 ```
 
 After you've created an instance you now have access to all the functionality of the drone, but there is some stuff you need to do first, namely connecting, running the setup, and starting the ping to keep it connected.
@@ -60,30 +54,30 @@ We recommend using `temporal` over a series of `setTimeout` chained calls for yo
 var RollingSpider = require("rolling-spider");
 var temporal = require("temporal");
 
-var yourDrone = new RollingSpider();
+var rollingSpider = new RollingSpider();
 
-yourDrone.connect(function() {
-  yourDrone.setup(function() {
+rollingSpider.connect(function() {
+  rollingSpider.setup(function() {
     // NEW CODE
     temporal.queue([
       {
         delay: 0,
         task: function () {
-          yourDrone.flatTrim();
-          yourDrone.startPing();
-          yourDrone.takeOff();
+          rollingSpider.flatTrim();
+          rollingSpider.startPing();
+          rollingSpider.takeOff();
         }
       },
       {
         delay: 3000,
         task: function () {
-          yourDrone.forward();
+          rollingSpider.forward();
         }
       },
       {
-        delay: 500,
+        delay: 1000,
         task: function () {
-          yourDrone.land();
+          rollingSpider.land();
         }
       }]);
   });
@@ -98,16 +92,21 @@ And there you have it, you can now control your drone.
 
 ### Flying Multiple MiniDrones
 
-Previous versions of the `rolling-spider` library required you to specify the UUID for your drone through a discover process. This has been removed in favor of just using the first BLE device that broadcasts with "RS_" as its localname. ***If you are flying multiple minidrones or in a very populated BLE area***, you will want to use the discovery process in order to identify specifically the drone(s) you want to control. Use the [Discovery Tool](https://github.com/FluffyJack/node-rolling-spider/blob/master/eg/discover.js) to get the UUID of all nearby BLE devices.
+Previous versions of the `rolling-spider` library required you to specify the UUID for your drone through a discover process. This has been removed in favor of just using the first BLE device that broadcasts with "RS_" as its localname. ***If you are flying multiple minidrones or in a very populated BLE area***, you will want to use the discovery process in order to identify specifically the drone(s) you want to control. Use the [Discovery Tool](https://github.com/voodootikigod/node-rolling-spider/blob/master/eg/discover.js) to get the UUID of all nearby BLE devices.
+
+If you want to fly multiple drones at once, please use the Swarm API for that. An example of the swarm, as well as other examples, is available in the `eg/` directory. [Source Code Sample](https://github.com/voodootikigod/node-rolling-spider/blob/master/eg/swarm.js)
+
 
 
 ### Client API
 
-#### RollingSpider.createClient([options])
+#### RollingSpider.createClient([options]) __or__ new RollingSpider([options])
 
-Returns a new `Client` object. `options` include:
+Options
 
-* `uuid`: The uuid (Bluetooth UUID) or the Published Name (something like RS_XXXXXX) of the drone. Defaults to finding first announced.
+> * `uuid`: The uuid (Bluetooth UUID) or the Published Name (something like RS_XXXXXX) of the drone. Defaults to finding first announced. Can be a list of uuids that are separated by a comma (in the case of a string)  or as an array of strings.
+> * `logger`: The logging engine to utilize. Defaults to `debug`, but you could provide `console.log` or other similar logging system that can accept strings and output them.
+> * `forceConnect`: When set to true, this will not wait for the bluetooth module to settle. This is necessary for some known use cases.
 
 #### client.on('battery', callback)
 
@@ -178,7 +177,7 @@ Resets the trim so that your drone's flight is stable. It should always be
 called before taking off.
 
 
-#### client.signalStrength(function callback(err, rssi) {})
+#### client.signalStrength(callback)
 
 Obtains the signal strength as an RSSI value returned as the second parameter of the callback.
 
@@ -190,3 +189,60 @@ Disconnects from the drone if it is connected.
 #### client.emergancy([callback]) __or__ client.emergency([callback])
 
 Causes the drone to shut off the motors "instantly" (sometimes has to wait for other commands ahead of it to complete... not fully safe yet)
+
+
+### Swarm API
+
+If you have more than one (or ten) Rolling Spiders, you will eventually want to control them all as a single, somewhat unified swarm. This became such a common request, we made it part of the API for the RollingSpider. This will allow you to initialize a set of members, defined or otherwise, and broadcast commands to them all at once.
+
+Common implementation boilerplate
+
+```javascript
+
+var Swarm = require('rolling-spider').Swarm;
+var swarm = new Swarm({timeout: 10});
+
+swarm.assemble();
+
+swarm.on('assembled', function () {
+  // For The Swarm!!!!!
+});
+
+
+```
+
+
+#### new Swarm(options)
+
+
+Options (anything additional is passed on to individual members upon initialization)
+
+> * `membership`: The uuid(s) or the Published Name(s) of the drone that are members of the swarm. If left empty/undefined, it will find any and all Rolling Spiders it can possibly find.
+> * `timeout`: The number of seconds before closing the membership forcibly. Use this to ensure that membership enrollment doesn't last forever.
+> * `forceConnect`: When set to true, this will not wait for the bluetooth module to settle. This is necessary for some known use cases.
+
+#### swarm.assemble([callback])
+
+Initiates the swarm collection process. This will attempt to seek out bluetooth RollingSpiders that have been identified in the membership or isMember validation components and enrolls them into the swarm.
+
+#### swarm.closeMembership([callback])
+
+Stops the open membership process and sets the swarm to active.
+
+#### swarm.at(id, [callback])
+
+Returns (or executes provided callback) with the swarm member that has the provided `id` value for localName or UUID. Use this to issue commands to specific drones in the swarm.
+
+#### swarm.isMember(device)
+
+Returns true if the provide device should be admitted as a member of the swarm or false if it should be ignored. Can be overridden for more complex membership definition.
+
+
+#### swarm.release([callback])
+
+Releases all of the drones from the swarm.
+
+
+#### Broadcasted Commands e.g. swarm.takeOff([options], [callback])
+
+All other commands for the swarm follow the command structure of an individual RollingSpider and it is broadcast to all roughly at the same time (bluetooth isn't always exact.) The signature is the same for all of the commands and passes options and a callback to the function. 
