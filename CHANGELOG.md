@@ -1,6 +1,8 @@
+# 1.4.0
+* Unleash the swarm.... Swarm capability now added to the rolling spider library. (@voodootikigod)
+
 # 1.3.1
 * Fixes callback issue when callback not present. (@kevinold)
-
 
 # 1.3.0
 * Even more callback flushing for all events and protective execution. (Fix for #43)
