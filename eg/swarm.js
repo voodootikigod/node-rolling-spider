@@ -26,22 +26,13 @@ process.stdin.resume();
 
 
 
-var swarm = new Swarm({
-  membership: [
-    'RS_B127274',
-    // 'RS_R094107',
-    'RS_W178602'
-    ]
+var swarm = new Swarm();
+
+swarm.assemble({timeout: 10});
+
+swarm.on('assembled', function () {
+  ACTIVE = true;
 });
-
-swarm.assemble(function (memberCount) {
-  console.log('assembled');
-
-  ACTIVE= true;
-
-});
-
-
 
 
 
