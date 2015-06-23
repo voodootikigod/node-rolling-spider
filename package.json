@@ -45,7 +45,8 @@
     "grunt-contrib-jshint": "^0.11.2",
     "grunt-mocha-test": "^0.12.7",
     "keypress": "^0.2.1",
-    "logitech-dual-action-controller": "^1.0.1",
+    "logitech-dual-action-controller": "git+https://github.com/voodootikigod/node-logitech-dual-action-controller.git",
+    
     "mocha": "2.2.5",
     "should": "6.0.3",
     "sinon": "1.14.1",
