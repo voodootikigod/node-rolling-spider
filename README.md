@@ -92,7 +92,7 @@ And there you have it, you can now control your drone.
 
 ### Flying Multiple MiniDrones
 
-[![Spider Swarm](http://img.youtube.com/vi/PLWJMR61Qs0/3.jpg)](http://www.youtube.com/watch?v=PLWJMR61Qs0)
+[![Spider Swarm](http://img.youtube.com/vi/PLWJMR61Qs0/0.jpg)](http://www.youtube.com/watch?v=PLWJMR61Qs0)
 
 Previous versions of the `rolling-spider` library required you to specify the UUID for your drone through a discover process. This has been removed in favor of just using the first BLE device that broadcasts with "RS_" as its localname. ***If you are flying multiple minidrones or in a very populated BLE area***, you will want to use the discovery process in order to identify specifically the drone(s) you want to control. Use the [Discovery Tool](https://github.com/voodootikigod/node-rolling-spider/blob/master/eg/discover.js) to get the UUID of all nearby BLE devices.
 
