@@ -110,6 +110,14 @@ Options
 > * `logger`: The logging engine to utilize. Defaults to `debug`, but you could provide `console.log` or other similar logging system that can accept strings and output them.
 > * `forceConnect`: When set to true, this will not wait for the bluetooth module to settle. This is necessary for some known use cases.
 
+#### client.connect([callback])
+
+Connects to the drone over BLE. `callback` is invoked when it is connected or receives an `error` if there is a problem establishing the connection.
+
+#### client.setup([callback])
+
+Sets up the connection to the drone and enumerate all of the services and characteristics. `callback` is invoked when setup completes or receives an `error` if there is a problem setting up the connection.
+
 #### client.on('battery', callback)
 
 Event that is emitted on battery change activity. Caution, battery drains pretty fast on this so this may create a high velocity of events.
