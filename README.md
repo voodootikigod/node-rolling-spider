@@ -51,21 +51,24 @@ We're now going to create a function that takes a drone and then by using a sequ
 We recommend using `temporal` over a series of `setTimeout` chained calls for your sanity. Please abide by this when playing with the drone and ESPECIALLY if filing a ticket.
 
 ```javascript
-var RollingSpider = require("rolling-spider");
-var temporal = require("temporal");
+'use strict';
 
-var rollingSpider = new RollingSpider();
+var RollingSpider = require('rolling-spider');
+var temporal = require('temporal');
+var var rollingSpider = new RollingSpider();
 
-rollingSpider.connect(function() {
-  rollingSpider.setup(function() {
-    // NEW CODE
+rollingSpider.connect(function () {
+  rollingSpider.setup(function () {
+    rollingSpider.flatTrim();
+    rollingSpider.startPing();
+    rollingSpider.flatTrim();
+
     temporal.queue([
       {
-        delay: 0,
+        delay: 5000,
         task: function () {
-          rollingSpider.flatTrim();
-          rollingSpider.startPing();
           rollingSpider.takeOff();
+          rollingSpider.flatTrim();
         }
       },
       {
@@ -75,11 +78,19 @@ rollingSpider.connect(function() {
         }
       },
       {
-        delay: 1000,
+        delay: 5000,
         task: function () {
           rollingSpider.land();
         }
-      }]);
+      },
+      {
+        delay: 5000,
+        task: function () {
+          temporal.clear();
+          process.exit(0);
+        }
+      }
+    ]);
   });
 });
 
