@@ -92,6 +92,8 @@ And there you have it, you can now control your drone.
 
 ### Flying Multiple MiniDrones
 
+[![Spider Swarm](http://img.youtube.com/vi/PLWJMR61Qs0/0.jpg)](http://www.youtube.com/watch?v=PLWJMR61Qs0)
+
 Previous versions of the `rolling-spider` library required you to specify the UUID for your drone through a discover process. This has been removed in favor of just using the first BLE device that broadcasts with "RS_" as its localname. ***If you are flying multiple minidrones or in a very populated BLE area***, you will want to use the discovery process in order to identify specifically the drone(s) you want to control. Use the [Discovery Tool](https://github.com/voodootikigod/node-rolling-spider/blob/master/eg/discover.js) to get the UUID of all nearby BLE devices.
 
 If you want to fly multiple drones at once, please use the Swarm API for that. An example of the swarm, as well as other examples, is available in the `eg/` directory. [Source Code Sample](https://github.com/voodootikigod/node-rolling-spider/blob/master/eg/swarm.js)
@@ -245,4 +247,4 @@ Releases all of the drones from the swarm.
 
 #### Broadcasted Commands e.g. swarm.takeOff([options], [callback])
 
-All other commands for the swarm follow the command structure of an individual RollingSpider and it is broadcast to all roughly at the same time (bluetooth isn't always exact.) The signature is the same for all of the commands and passes options and a callback to the function. 
+All other commands for the swarm follow the command structure of an individual RollingSpider and it is broadcast to all roughly at the same time (bluetooth isn't always exact.) The signature is the same for all of the commands and passes options and a callback to the function.
