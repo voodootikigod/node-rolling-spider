@@ -55,7 +55,7 @@ We recommend using `temporal` over a series of `setTimeout` chained calls for yo
 
 var RollingSpider = require('rolling-spider');
 var temporal = require('temporal');
-var var rollingSpider = new RollingSpider();
+var rollingSpider = new RollingSpider();
 
 rollingSpider.connect(function () {
   rollingSpider.setup(function () {
