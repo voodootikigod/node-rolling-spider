@@ -4,19 +4,27 @@ var Drone = require('../');
 var noble = require('noble');
 var knownDevices = [];
 
-noble.startScanning();
+if (this.ble.state === 'poweredOn') {
+  start()
+} else {
+  noble.on('stateChange', start);
+}
 
-noble.on('discover', function(peripheral) {
-  if (!Drone.isDronePeripheral(peripheral)) {
-    return; // not a rolling spider
-  }
+function start () {
+  noble.startScanning();
 
-  var details = {
-    name: peripheral.advertisement.localName,
-    uuid: peripheral.uuid,
-    rssi: peripheral.rssi
-  };
+  noble.on('discover', function(peripheral) {
+    if (!Drone.isDronePeripheral(peripheral)) {
+      return; // not a rolling spider
+    }
 
-  knownDevices.push(details);
-  console.log(knownDevices.length + ': ' + details.name + ' (' + details.uuid + '), RSSI ' + details.rssi);
-});
+    var details = {
+      name: peripheral.advertisement.localName,
+      uuid: peripheral.uuid,
+      rssi: peripheral.rssi
+    };
+
+    knownDevices.push(details);
+    console.log(knownDevices.length + ': ' + details.name + ' (' + details.uuid + '), RSSI ' + details.rssi);
+  });
+}
