@@ -1,10 +1,10 @@
 'use strict';
 
-var Drone = require('../');
+var Drone = require('rolling-spider');
 var noble = require('noble');
 var knownDevices = [];
 
-if (this.ble.state === 'poweredOn') {
+if (noble.state === 'poweredOn') {
   start()
 } else {
   noble.on('stateChange', start);
