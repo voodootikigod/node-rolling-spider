@@ -4,7 +4,7 @@ var Drone = require('../');
 var noble = require('noble');
 var knownDevices = [];
 
-if (this.ble.state === 'poweredOn') {
+if (noble.state === 'poweredOn') {
   start()
 } else {
   noble.on('stateChange', start);
