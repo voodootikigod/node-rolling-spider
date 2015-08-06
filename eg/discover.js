@@ -1,6 +1,6 @@
 'use strict';
 
-var Drone = require('../');
+var Drone = require('rolling-spider');
 var noble = require('noble');
 var knownDevices = [];
 
