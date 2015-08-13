@@ -5,7 +5,7 @@ An implementation of the networking protocols (Bluetooth LE) used by the
 
 Prerequisites:
 
- * See [noble prerequisites](https://github.com/sandeepmistry/noble#prerequisites) for you platform
+ * See [noble prerequisites](https://github.com/sandeepmistry/noble#prerequisites) for your platform
 
 To install:
 
