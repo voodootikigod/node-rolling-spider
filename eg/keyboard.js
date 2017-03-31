@@ -27,7 +27,7 @@ if (process.env.UUID) {
   console.log('Searching for ', process.env.UUID);
 }
 
-var d = new Drone(process.env.UUID);
+var d = new Drone();
 
 d.connect(function () {
   d.setup(function () {
