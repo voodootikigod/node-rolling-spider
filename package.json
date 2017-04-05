@@ -31,35 +31,38 @@
       "name": "Chris Taylor",
       "email": "christhebaron@gmail.com",
       "web": "http://christhebaron.co.uk"
+    },
+    {
+      "name": "Linda Nichols",
+      "email": "lynnaloo@gmail.com"
     }
   ],
   "bugs": {
     "url": "https://github.com/FluffyJack/node-rolling-spider/issues"
   },
+  "scripts": {
+    "test": "mocha"
+  },
   "dependencies": {
     "debug": "^2.1.1",
+    "keypress": "^0.2.1",
     "lodash": "3.9.3",
-    "noble": "^1.1.0"
+    "noble": "^1.8.0"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "^0.11.2",
-    "grunt-mocha-test": "^0.12.7",
-    "keypress": "^0.2.1",
-    "logitech-dual-action-controller": "git+https://github.com/voodootikigod/node-logitech-dual-action-controller.git",
-
     "mocha": "2.2.5",
     "should": "6.0.3",
     "sinon": "1.14.1",
     "temporal": "^0.4.0"
   },
+  "optionalDependencies": {
+    "logitech-dual-action-controller": "git+https://github.com/voodootikigod/node-logitech-dual-action-controller.git"
+  },
   "repository": {
     "type": "git",
-    "url": "git@github.com:FluffyJack/node-rolling-spider.git"
+    "url": "git@github.com:voodootikigod/node-rolling-spider.git"
   },
-  "license": {
-    "name": "MIT",
-    "url": "http://opensource.org/licenses/MIT"
-  },
+  "license": "MIT",
   "os": [
     "darwin",
     "linux",
