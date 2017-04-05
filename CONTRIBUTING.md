@@ -9,11 +9,9 @@ $ npm install
 $ npm test
 ```
 
-Funny story, as of right now we dont have any tests, they mainly live in the
-`SamplesAndTools` directory for use with a real drone. Please, please, please if
+Funny story, as of right now we don't have many tests, they mainly live in the
+`eg` directory for use with a real drone. Please, please, please if
 you rock at test, help out!
-
-
 
 ### Fixing bugs
 
