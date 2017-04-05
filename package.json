@@ -47,7 +47,6 @@
     "debug": "^2.1.1",
     "keypress": "^0.2.1",
     "lodash": "3.9.3",
-    "logitech-dual-action-controller": "git+https://github.com/voodootikigod/node-logitech-dual-action-controller.git",
     "noble": "^1.1.0"
   },
   "devDependencies": {
@@ -55,6 +54,9 @@
     "should": "6.0.3",
     "sinon": "1.14.1",
     "temporal": "^0.4.0"
+  },
+  "optionalDependencies": {
+    "logitech-dual-action-controller": "git+https://github.com/voodootikigod/node-logitech-dual-action-controller.git"
   },
   "repository": {
     "type": "git",
