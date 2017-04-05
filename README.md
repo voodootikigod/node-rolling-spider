@@ -29,7 +29,6 @@ To connect you need to create a new `Drone` instance.
 
 ```javascript
 var RollingSpider = require("rolling-spider");
-
 var rollingSpider = new RollingSpider();
 ```
 
@@ -37,14 +36,16 @@ After you've created an instance you now have access to all the functionality of
 
 ```javascript
 var RollingSpider = require("rolling-spider");
-
 var rollingSpider = new RollingSpider();
 
 // NEW CODE BELOW HERE
 
 rollingSpider.connect(function() {
   rollingSpider.setup(function() {
+    rollingSpider.flatTrim();
     rollingSpider.startPing();
+    rollingSpider.flatTrim();
+    console.log('Connected to drone', rollingSpider.name);
   });
 });
 ```
@@ -61,8 +62,8 @@ var RollingSpider = require('rolling-spider');
 var temporal = require('temporal');
 var rollingSpider = new RollingSpider();
 
-rollingSpider.connect(function () {
-  rollingSpider.setup(function () {
+rollingSpider.connect(function() {
+  rollingSpider.setup(function() {
     rollingSpider.flatTrim();
     rollingSpider.startPing();
     rollingSpider.flatTrim();
@@ -78,7 +79,7 @@ rollingSpider.connect(function () {
       {
         delay: 3000,
         task: function () {
-          rollingSpider.forward();
+          rollingSpider.forward({steps: 12});
         }
       },
       {
@@ -104,7 +105,6 @@ rollingSpider.connect(function () {
 
 And there you have it, you can now control your drone.
 
-
 ### Flying Multiple MiniDrones
 
 [![Spider Swarm](http://img.youtube.com/vi/PLWJMR61Qs0/0.jpg)](http://www.youtube.com/watch?v=PLWJMR61Qs0)
@@ -112,8 +112,6 @@ And there you have it, you can now control your drone.
 Previous versions of the `rolling-spider` library required you to specify the UUID for your drone through a discover process. This has been removed in favor of just using the first BLE device that broadcasts with "RS_" as its localname. ***If you are flying multiple minidrones or in a very populated BLE area***, you will want to use the discovery process in order to identify specifically the drone(s) you want to control. Use the [Discovery Tool](https://github.com/voodootikigod/node-rolling-spider/blob/master/eg/discover.js) to get the UUID of all nearby BLE devices.
 
 If you want to fly multiple drones at once, please use the Swarm API for that. An example of the swarm, as well as other examples, is available in the `eg/` directory. [Source Code Sample](https://github.com/voodootikigod/node-rolling-spider/blob/master/eg/swarm.js)
-
-
 
 ### Client API
 
@@ -195,12 +193,10 @@ Causes the drone to do an amazing left flip. **DO NOT USE WITH WHEELS ON!!!**
 
 Causes the drone to do an amazing right flip. **DO NOT USE WITH WHEELS ON!!!**
 
-
 #### client.calibrate([callback]) __or__ client.flatTrim([callback])
 
 Resets the trim so that your drone's flight is stable. It should always be
 called before taking off.
-
 
 #### client.signalStrength(callback)
 
@@ -210,11 +206,9 @@ Obtains the signal strength as an RSSI value returned as the second parameter of
 
 Disconnects from the drone if it is connected.
 
-
 #### client.emergancy([callback]) __or__ client.emergency([callback])
 
 Causes the drone to shut off the motors "instantly" (sometimes has to wait for other commands ahead of it to complete... not fully safe yet)
-
 
 ### Swarm API
 
@@ -223,7 +217,6 @@ If you have more than one (or ten) Rolling Spiders, you will eventually want to 
 Common implementation boilerplate
 
 ```javascript
-
 var Swarm = require('rolling-spider').Swarm;
 var swarm = new Swarm({timeout: 10});
 
@@ -232,10 +225,7 @@ swarm.assemble();
 swarm.on('assembled', function () {
   // For The Swarm!!!!!
 });
-
-
 ```
-
 
 #### new Swarm(options)
 
