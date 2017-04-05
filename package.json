@@ -41,7 +41,8 @@
     "url": "https://github.com/FluffyJack/node-rolling-spider/issues"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "lint": "eslint . --ext .js"
   },
   "dependencies": {
     "debug": "^2.1.1",
@@ -53,7 +54,9 @@
     "mocha": "2.2.5",
     "should": "6.0.3",
     "sinon": "1.14.1",
-    "temporal": "^0.4.0"
+    "temporal": "^0.4.0",
+    "eslint-config-eta": "^0.0.9",
+    "eslint": "^3.19.0"
   },
   "optionalDependencies": {
     "logitech-dual-action-controller": "git+https://github.com/voodootikigod/node-logitech-dual-action-controller.git"
