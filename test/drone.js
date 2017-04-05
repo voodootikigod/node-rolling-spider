@@ -20,6 +20,16 @@ describe('Drone.isDronePeripheral', function() {
     done();
   });
 
+    it('returns true if peripheral.advertisement.localName begins with "Mambo_"', function(done) {
+    var peripheral = {
+      advertisement: {
+        localName: 'Mambo_whatever'
+      }
+    };
+    should.equal(Drone.isDronePeripheral(peripheral), true);
+    done();
+  });
+
   it('returns true if peripheral.advertisement.manufacturerData is correct', function(done) {
     var peripheral = {
       advertisement: {

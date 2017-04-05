@@ -36,6 +36,9 @@
   "bugs": {
     "url": "https://github.com/FluffyJack/node-rolling-spider/issues"
   },
+  "scripts": {
+    "test": "mocha"
+  },
   "dependencies": {
     "debug": "^2.1.1",
     "lodash": "3.9.3",
@@ -46,7 +49,6 @@
     "grunt-mocha-test": "^0.12.7",
     "keypress": "^0.2.1",
     "logitech-dual-action-controller": "git+https://github.com/voodootikigod/node-logitech-dual-action-controller.git",
-
     "mocha": "2.2.5",
     "should": "6.0.3",
     "sinon": "1.14.1",
@@ -56,10 +58,7 @@
     "type": "git",
     "url": "git@github.com:FluffyJack/node-rolling-spider.git"
   },
-  "license": {
-    "name": "MIT",
-    "url": "http://opensource.org/licenses/MIT"
-  },
+  "license": "MIT",
   "os": [
     "darwin",
     "linux",
