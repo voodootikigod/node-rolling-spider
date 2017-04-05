@@ -2,7 +2,8 @@
   "extends": "eta",
   "rules": {
     "camelcase": 1,
-    "comma-spacing": 1
+    "comma-spacing": 1,
+    "no-unused-vars": 1
   }
 }
 
