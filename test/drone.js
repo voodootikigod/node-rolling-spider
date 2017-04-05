@@ -1,7 +1,5 @@
 var Drone = require('../');
 var should = require('should');
-var sinon = require('sinon');
-
 
 describe('Drone.isDronePeripheral', function() {
 
