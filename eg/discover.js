@@ -5,7 +5,7 @@ var noble = require('noble');
 var knownDevices = [];
 
 if (noble.state === 'poweredOn') {
-  start()
+  start();
 } else {
   noble.on('stateChange', start);
 }
