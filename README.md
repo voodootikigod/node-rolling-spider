@@ -193,6 +193,10 @@ Causes the drone to do an amazing left flip. **DO NOT USE WITH WHEELS ON!!!**
 
 Causes the drone to do an amazing right flip. **DO NOT USE WITH WHEELS ON!!!**
 
+#### client.takePicture([callback])
+
+Causes the drone to take a picture with bottom camera.
+
 #### client.calibrate([callback]) __or__ client.flatTrim([callback])
 
 Resets the trim so that your drone's flight is stable. It should always be
