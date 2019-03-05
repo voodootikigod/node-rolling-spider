@@ -58,9 +58,6 @@
     "eslint-config-eta": "^0.0.9",
     "eslint": "^3.19.0"
   },
-  "optionalDependencies": {
-    "logitech-dual-action-controller": "git+https://github.com/voodootikigod/node-logitech-dual-action-controller.git"
-  },
   "repository": {
     "type": "git",
     "url": "git@github.com:voodootikigod/node-rolling-spider.git"
