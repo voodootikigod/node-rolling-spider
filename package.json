@@ -48,7 +48,7 @@
     "debug": "^2.1.1",
     "keypress": "^0.2.1",
     "lodash": "3.9.3",
-    "noble": "^1.8.0"
+    "noble": "voodootikigod/noble"
   },
   "devDependencies": {
     "mocha": "2.2.5",
