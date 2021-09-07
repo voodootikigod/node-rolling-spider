@@ -1,2 +1,0 @@
-#!/bin/bash
-browserify lib/drone.js -o drone.browserify.js -i noble -i debug
